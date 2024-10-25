@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ucapan Selamat Ulang Tahun</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Poppins', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #e3f2fd;
             margin: 0;
             color: #333;
+            background-image: url('img/kiw4.webp'); /* Ganti dengan jalur gambar wallpaper Anda */
+            background-size: cover; /* Menyesuaikan ukuran gambar dengan ukuran layar */
+            background-position: center; /* Memusatkan gambar */
         }
         button {
             padding: 15px 30px;
@@ -23,10 +26,11 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
         }
         button:hover {
             background-color: #1976d2;
+            transform: scale(1.05);
         }
         .popup {
             display: none;
@@ -53,6 +57,11 @@
             display: none;
             z-index: 999;
         }
+        .cake-img {
+            width: 150px;
+            height: auto;
+            margin: 20px auto;
+        }
     </style>
 </head>
 <body>
@@ -61,11 +70,12 @@
         <button id="birthdayButton">Selamat Ulang Tahun!</button>
     </div>
 
-    <div class="overlay" id="overlay"></div>
-    <div class="popup" id="popup">
-        <h2>Selamat Ulang Tahun</h2>
-        <p id="birthdayMessage"></p>
-        <audio id="birthdaySong" autoplay>
+    <div class="overlay" id="overlay" aria-hidden="true"></div>
+    <div class="popup" id="popup" aria-labelledby="popup-title" aria-describedby="popup-description">
+        <h2 id="popup-title">Selamat Ulang Tahun</h2>
+        <img src="img/giphy.webp" alt="Kue Ulang Tahun" class="cake-img">
+        <p id="birthdayMessage" id="popup-description"></p>
+        <audio id="birthdaySong" preload="auto">
             <source src="audio/Selamat_Ulang_Tahun_42 (mp3cut.net).mp3" type="audio/mpeg">
             Browser Anda tidak mendukung elemen audio.
         </audio>
@@ -73,8 +83,7 @@
     </div>
 
     <script>
-        // Ganti nama pengirim di sini
-        const sender = "Bagas Gusti Saputro"; // Nama pengirim
+        const sender = "Bagas Gusti Saputro";
         document.getElementById('birthdayButton').onclick = function() {
             const message = `Dari: ${sender}<br><br>Semoga harimu penuh kebahagiaan dan tawa!<br>
             Ingat, semakin tua, semakin banyak lilin di kue, tapi juga semakin banyak alasan untuk merayakan!`;
@@ -82,14 +91,14 @@
             document.getElementById('birthdayMessage').innerHTML = message;
             document.getElementById('overlay').style.display = 'block';
             document.getElementById('popup').style.display = 'block';
-            document.getElementById('birthdaySong').play(); // Memutar lagu saat popup dibuka
+            document.getElementById('birthdaySong').play();
         };
 
         function closePopup() {
             document.getElementById('overlay').style.display = 'none';
             document.getElementById('popup').style.display = 'none';
-            document.getElementById('birthdaySong').pause(); // Menghentikan lagu saat popup ditutup
-            document.getElementById('birthdaySong').currentTime = 0; // Mengatur ulang waktu lagu
+            document.getElementById('birthdaySong').pause();
+            document.getElementById('birthdaySong').currentTime = 0;
         }
     </script>
 </body>
