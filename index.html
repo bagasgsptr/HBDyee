@@ -65,6 +65,10 @@
     <div class="popup" id="popup">
         <h2>Selamat Ulang Tahun!</h2>
         <p id="birthdayMessage"></p>
+        <audio id="birthdaySong" controls>
+            <source src="audio/Selamat_Ulang_Tahun_42 (mp3cut.net).mp3" type="audio/mpeg">
+            Browser Anda tidak mendukung elemen audio.
+        </audio>
         <button onclick="closePopup()">Tutup</button>
     </div>
 
@@ -78,11 +82,14 @@
             document.getElementById('birthdayMessage').innerHTML = message;
             document.getElementById('overlay').style.display = 'block';
             document.getElementById('popup').style.display = 'block';
+            document.getElementById('birthdaySong').play(); // Memutar lagu saat popup dibuka
         };
 
         function closePopup() {
             document.getElementById('overlay').style.display = 'none';
             document.getElementById('popup').style.display = 'none';
+            document.getElementById('birthdaySong').pause(); // Menghentikan lagu saat popup ditutup
+            document.getElementById('birthdaySong').currentTime = 0; // Mengatur ulang waktu lagu
         }
     </script>
 </body>
